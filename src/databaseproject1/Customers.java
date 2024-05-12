@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package databaseproject1;
 
 import java.sql.Connection;
@@ -12,13 +16,20 @@ import javax.swing.table.TableModel;
 import javax.swing.text.TableView;
 import javax.swing.text.html.HTML;
 
-public class DB2 extends javax.swing.JFrame {
+/**
+ *
+ * @author CompuMall
+ */
+public class Customers extends javax.swing.JFrame {
 
     Connection con;
-    int currRow;
-    int adminSelectedRowID;
+//    int currRow;
+    int customerSelectedRowID;
 
-    public DB2() {
+    /**
+     * Creates new form Customers
+     */
+    public Customers() {
         initComponents();
         createConnection();
         this.setLocationRelativeTo(null);
@@ -30,13 +41,13 @@ public class DB2 extends javax.swing.JFrame {
             con = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/mydb", "root", "khashana44Wlv");
 //          THIS HOW TO CREATE STATMENT AND GET DATA  
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from admins");
+            ResultSet rs = stmt.executeQuery("select * from customers");
 //            while there is one more than one row
             while (rs.next()) {
-                String adminId = rs.getString("adminID");
-                String name = rs.getString("adminName");
-                String password = rs.getString("adminPassword");
-                System.out.println(adminId + " | " + name + " | " + password);
+                String customersId = rs.getString("customerID");
+                String name = rs.getString("name");
+                String phone = rs.getString("phone");
+                System.out.println(customersId + " | " + name + " | " + phone);
             }
 
         } catch (SQLException ex) {
@@ -61,20 +72,20 @@ public class DB2 extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        adminName = new javax.swing.JTextField();
+        customerName = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        adminPass = new javax.swing.JPasswordField();
-        addNewAdminBtn = new javax.swing.JButton();
+        addNewCustomerBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        adminsTablev = new javax.swing.JTable();
-        editAdminPass = new javax.swing.JPasswordField();
-        editCurrAdminBtn = new javax.swing.JButton();
+        CustomerTablev = new javax.swing.JTable();
+        editCurrCustomerBtn = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        editAdminName = new javax.swing.JTextField();
+        editCustomerName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        refreshAdminsTable = new javax.swing.JButton();
-        ResetAddNewAdminInputsBtn = new javax.swing.JButton();
-        deleteCurrAdminBtn = new javax.swing.JButton();
+        refreshCustomersTable = new javax.swing.JButton();
+        ResetAddNewCustomerInputsBtn = new javax.swing.JButton();
+        deleteCurrCustomerBtn = new javax.swing.JButton();
+        customerPhone = new javax.swing.JTextField();
+        editcustomerPhone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,7 +94,7 @@ public class DB2 extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel1.setText("Admins Dashboard");
+        jLabel1.setText("Customers Dashboard");
         jLabel1.setAlignmentX(0.5F);
 
         jSeparator1.setBackground(new java.awt.Color(0, 153, 153));
@@ -92,45 +103,36 @@ public class DB2 extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Full Name");
 
-        adminName.setBackground(new java.awt.Color(51, 51, 51));
-        adminName.setForeground(new java.awt.Color(204, 204, 204));
-        adminName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
-        adminName.addActionListener(new java.awt.event.ActionListener() {
+        customerName.setBackground(new java.awt.Color(51, 51, 51));
+        customerName.setForeground(new java.awt.Color(204, 204, 204));
+        customerName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
+        customerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminNameActionPerformed(evt);
+                customerNameActionPerformed(evt);
             }
         });
 
         jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Password");
 
-        adminPass.setBackground(new java.awt.Color(51, 51, 51));
-        adminPass.setForeground(new java.awt.Color(204, 204, 204));
-        adminPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
-        adminPass.addActionListener(new java.awt.event.ActionListener() {
+        addNewCustomerBtn.setText("Add");
+        addNewCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminPassActionPerformed(evt);
-            }
-        });
-
-        addNewAdminBtn.setText("Add");
-        addNewAdminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewAdminBtn(evt);
+                addNewCustomerBtn(evt);
             }
         });
 
         jScrollPane1.setBackground(new java.awt.Color(51, 51, 51));
         jScrollPane1.setForeground(new java.awt.Color(204, 204, 204));
 
-        adminsTablev.setBackground(new java.awt.Color(51, 51, 51));
-        adminsTablev.setForeground(new java.awt.Color(204, 204, 204));
-        adminsTablev.setModel(new javax.swing.table.DefaultTableModel(
+        CustomerTablev.setBackground(new java.awt.Color(51, 51, 51));
+        CustomerTablev.setForeground(new java.awt.Color(204, 204, 204));
+        CustomerTablev.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "Name", "Password"
+                "ID", "Name", "Phone"
             }
         ) {
             Class[] types = new Class [] {
@@ -148,67 +150,66 @@ public class DB2 extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        adminsTablev.setGridColor(new java.awt.Color(204, 204, 204));
-        adminsTablev.setSelectionBackground(new java.awt.Color(51, 51, 51));
-        adminsTablev.setSelectionForeground(new java.awt.Color(204, 204, 204));
-        adminsTablev.addMouseListener(new java.awt.event.MouseAdapter() {
+        CustomerTablev.setGridColor(new java.awt.Color(204, 204, 204));
+        CustomerTablev.setSelectionBackground(new java.awt.Color(51, 51, 51));
+        CustomerTablev.setSelectionForeground(new java.awt.Color(204, 204, 204));
+        CustomerTablev.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                adminsTablevMouseClicked(evt);
+                CustomerTablevMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(adminsTablev);
+        jScrollPane1.setViewportView(CustomerTablev);
 
-        editAdminPass.setBackground(new java.awt.Color(51, 51, 51));
-        editAdminPass.setForeground(new java.awt.Color(204, 204, 204));
-        editAdminPass.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
-        editAdminPass.addActionListener(new java.awt.event.ActionListener() {
+        editCurrCustomerBtn.setText("Edit");
+        editCurrCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editAdminPassActionPerformed(evt);
-            }
-        });
-
-        editCurrAdminBtn.setText("Edit");
-        editCurrAdminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editCurrAdminBtn(evt);
+                editCurrCustomerBtn(evt);
             }
         });
 
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Full Name");
 
-        editAdminName.setBackground(new java.awt.Color(51, 51, 51));
-        editAdminName.setForeground(new java.awt.Color(204, 204, 204));
-        editAdminName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
-        editAdminName.addActionListener(new java.awt.event.ActionListener() {
+        editCustomerName.setBackground(new java.awt.Color(51, 51, 51));
+        editCustomerName.setForeground(new java.awt.Color(204, 204, 204));
+        editCustomerName.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
+        editCustomerName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editAdminNameActionPerformed(evt);
+                editCustomerNameActionPerformed(evt);
             }
         });
 
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Password");
 
-        refreshAdminsTable.setText("Refresh");
-        refreshAdminsTable.addActionListener(new java.awt.event.ActionListener() {
+        refreshCustomersTable.setText("Refresh");
+        refreshCustomersTable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshAdminsTableActionPerformed(evt);
+                refreshCustomersTableActionPerformed(evt);
             }
         });
 
-        ResetAddNewAdminInputsBtn.setText("Reset");
-        ResetAddNewAdminInputsBtn.addActionListener(new java.awt.event.ActionListener() {
+        ResetAddNewCustomerInputsBtn.setText("Reset");
+        ResetAddNewCustomerInputsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ResetAddNewAdminInputsBtn(evt);
+                ResetAddNewCustomerInputsBtn(evt);
             }
         });
 
-        deleteCurrAdminBtn.setText("Delete");
-        deleteCurrAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+        deleteCurrCustomerBtn.setText("Delete");
+        deleteCurrCustomerBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteCurrAdminBtn(evt);
+                deleteCurrCustomerBtn(evt);
             }
         });
+
+        customerPhone.setBackground(new java.awt.Color(51, 51, 51));
+        customerPhone.setForeground(new java.awt.Color(204, 204, 204));
+        customerPhone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
+
+        editcustomerPhone.setBackground(new java.awt.Color(51, 51, 51));
+        editcustomerPhone.setForeground(new java.awt.Color(204, 204, 204));
+        editcustomerPhone.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(51, 51, 51), 3, true));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -220,7 +221,7 @@ public class DB2 extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 757, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 720, Short.MAX_VALUE)
                     .addComponent(jSeparator1)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -228,25 +229,25 @@ public class DB2 extends javax.swing.JFrame {
                             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editAdminName)
-                            .addComponent(adminName))
+                            .addComponent(editCustomerName)
+                            .addComponent(customerName))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(adminPass)
-                            .addComponent(editAdminPass))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(customerPhone)
+                            .addComponent(editcustomerPhone, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(editCurrCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(addNewCustomerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(editCurrAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addNewAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(refreshAdminsTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(ResetAddNewAdminInputsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(deleteCurrAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(refreshCustomersTable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ResetAddNewCustomerInputsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteCurrCustomerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -261,24 +262,24 @@ public class DB2 extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(adminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(adminPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addNewAdminBtn)
-                            .addComponent(ResetAddNewAdminInputsBtn))
+                            .addComponent(addNewCustomerBtn)
+                            .addComponent(ResetAddNewCustomerInputsBtn)
+                            .addComponent(customerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(editCustomerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editAdminPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(editCurrAdminBtn)
-                            .addComponent(deleteCurrAdminBtn))
+                            .addComponent(editCurrCustomerBtn)
+                            .addComponent(deleteCurrCustomerBtn)
+                            .addComponent(editcustomerPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(54, 54, 54))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(refreshAdminsTable, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refreshCustomersTable, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(15, 15, 15)))
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -286,7 +287,9 @@ public class DB2 extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,114 +301,101 @@ public class DB2 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addNewAdminBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewAdminBtn
+    private void customerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_customerNameActionPerformed
+
+    private void addNewCustomerBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewCustomerBtn
         try {
-//            Adding admin Operation
-            String name = adminName.getText();
-            String pass = adminPass.getText();
+            //            Adding customer Operation
+            String name = customerName.getText();
+            String phone = customerPhone.getText();
             Statement stmt = con.createStatement();
-            String addAdmin = "INSERT INTO admins (adminName, adminPassword) VALUES ('" + name + "', '" + pass + "')";
-            stmt.execute(addAdmin);
+            String addCustomer = "INSERT INTO customers (name, phone) VALUES ('" + name + "', '" + phone + "')";
+            stmt.execute(addCustomer);
 
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB2.class.getName()).log(Level.SEVERE, null, ex);
         }
-        refreshAdminsTableActionPerformed(evt);
-    }//GEN-LAST:event_addNewAdminBtn
+        refreshCustomersTableActionPerformed(evt);
+    }//GEN-LAST:event_addNewCustomerBtn
 
-    private void adminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminNameActionPerformed
+    private void CustomerTablevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_CustomerTablevMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_adminNameActionPerformed
+        DefaultTableModel customerTable = (DefaultTableModel) CustomerTablev.getModel();
+//        currRow = CustomerTablev.getSelectedRow();
+        String editCustomerNamee = (String) customerTable.getValueAt(CustomerTablev.getSelectedRow(), 1);
+        String editCustomerPhone = (String) customerTable.getValueAt(CustomerTablev.getSelectedRow(), 2);
+        customerSelectedRowID = Integer.parseInt((String) customerTable.getValueAt(CustomerTablev.getSelectedRow(), 0));
+        editCustomerName.setText(editCustomerNamee);
+        editcustomerPhone.setText(editCustomerPhone);
+    }//GEN-LAST:event_CustomerTablevMouseClicked
 
-    private void adminPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_adminPassActionPerformed
-
-    private void editAdminPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAdminPassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editAdminPassActionPerformed
-
-    private void editCurrAdminBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCurrAdminBtn
+    private void editCurrCustomerBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCurrCustomerBtn
         try {
-            String name = editAdminName.getText();
-            String pass = editAdminPass.getText();
+            String name = editCustomerName.getText();
+            String phone = editcustomerPhone.getText();
             Statement stmt = con.createStatement();
-            String editAdmin = "UPDATE admins SET adminName = '" + name + "', adminPassword = '" + pass + "' WHERE adminID = '" + adminSelectedRowID + "'";
-            stmt.execute(editAdmin);
-            editAdminName.setText("");
-            editAdminPass.setText("");
-            adminsTablev.clearSelection();
-            adminSelectedRowID = -1;
-            refreshAdminsTableActionPerformed(evt);
+            String editCustomer = "UPDATE customers SET name = '" + name + "', phone = '" + phone + "' WHERE customerID = '" + customerSelectedRowID + "'";
+            stmt.execute(editCustomer);
+            refreshCustomersTableActionPerformed(evt);
+            editCustomerName.setText("");
+            editcustomerPhone.setText("");
+            CustomerTablev.clearSelection();
+            customerSelectedRowID = -1;
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_editCurrAdminBtn
+    }//GEN-LAST:event_editCurrCustomerBtn
 
-    private void editAdminNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editAdminNameActionPerformed
+    private void editCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editCustomerNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_editAdminNameActionPerformed
+    }//GEN-LAST:event_editCustomerNameActionPerformed
 
-    private void refreshAdminsTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshAdminsTableActionPerformed
-        DefaultTableModel adminsTable = (DefaultTableModel) adminsTablev.getModel();
+    private void refreshCustomersTableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshCustomersTableActionPerformed
+        DefaultTableModel customersTable = (DefaultTableModel) CustomerTablev.getModel();
         try {
             Statement stmt = con.createStatement();
-
-//          Dispaying Data To The Table
-            ResultSet rs = stmt.executeQuery("select * from admins");
+            ResultSet rs = stmt.executeQuery("select * from customers");
             int rowCount = -1;
             while (rs.next()) {
                 rowCount++;
-                String adminId = rs.getString("adminID");
-                String adminName = rs.getString("adminName");
-                String AdminPassword = rs.getString("adminPassword");
-//                System.out.println(adminId + " | " + adminName + " | " + AdminPassword);
-                adminsTable.setRowCount(rowCount);
-                adminsTable.addRow(new Object[]{adminId, adminName, AdminPassword});
+                String customerId = rs.getString("customerID");
+                String customerName = rs.getString("name");
+                String customerPhone = rs.getString("phone");
+                customersTable.setRowCount(rowCount);
+                customersTable.addRow(new Object[]{customerId, customerName, customerPhone});
             }
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB2.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }//GEN-LAST:event_refreshCustomersTableActionPerformed
 
-    }//GEN-LAST:event_refreshAdminsTableActionPerformed
-
-    private void ResetAddNewAdminInputsBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetAddNewAdminInputsBtn
+    private void ResetAddNewCustomerInputsBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ResetAddNewCustomerInputsBtn
         // TODO add your handling code here:
-        adminPass.setText("");
-        adminName.setText("");
-    }//GEN-LAST:event_ResetAddNewAdminInputsBtn
+        customerPhone.setText("");
+        customerName.setText("");
+    }//GEN-LAST:event_ResetAddNewCustomerInputsBtn
 
-    private void deleteCurrAdminBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCurrAdminBtn
-//        int currRow = adminsTablev.getSelectedRow();
-        String getRowID = (String) adminsTablev.getValueAt(adminsTablev.getSelectedRow(), 0);
+    private void deleteCurrCustomerBtn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteCurrCustomerBtn
+        String getRowID = (String) CustomerTablev.getValueAt(CustomerTablev.getSelectedRow(), 0);
         Statement stmt;
         try {
             stmt = con.createStatement();
-            String deleteAdmin = "Delete from admins where adminID = '" + getRowID + "'";
-            stmt.executeUpdate(deleteAdmin);
-            refreshAdminsTableActionPerformed(evt);
-            editAdminName.setText("");
-            editAdminPass.setText("");
-            adminsTablev.clearSelection();
+            String deleteCustomer = "Delete from customers where customerID = '" + getRowID + "'";
+            stmt.executeUpdate(deleteCustomer);
+            refreshCustomersTableActionPerformed(evt);
+            editCustomerName.setText("");
+            editcustomerPhone.setText("");
+            CustomerTablev.clearSelection();
             stmt.close();
         } catch (SQLException ex) {
             Logger.getLogger(DB2.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_deleteCurrAdminBtn
-
-    private void adminsTablevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminsTablevMouseClicked
-        // TODO add your handling code here:
-        DefaultTableModel adminsTable = (DefaultTableModel) adminsTablev.getModel();
-//        currRow = adminsTablev.getSelectedRow();
-        String editAdmnName = (String) adminsTable.getValueAt(adminsTablev.getSelectedRow(), 1);
-        String editAdmnPass = (String) adminsTable.getValueAt(adminsTablev.getSelectedRow(), 2);
-        adminSelectedRowID = Integer.parseInt((String) adminsTable.getValueAt(adminsTablev.getSelectedRow(), 0));
-        editAdminName.setText(editAdmnName);
-        editAdminPass.setText(editAdmnPass);
-    }//GEN-LAST:event_adminsTablevMouseClicked
+    }//GEN-LAST:event_deleteCurrCustomerBtn
 
     /**
      * @param args the command line arguments
@@ -424,34 +414,34 @@ public class DB2 extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DB2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DB2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DB2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DB2.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Customers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new DB2().setVisible(true);
+                new Customers().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ResetAddNewAdminInputsBtn;
-    private javax.swing.JButton addNewAdminBtn;
-    private javax.swing.JTextField adminName;
-    private javax.swing.JPasswordField adminPass;
-    private javax.swing.JTable adminsTablev;
-    private javax.swing.JButton deleteCurrAdminBtn;
-    private javax.swing.JTextField editAdminName;
-    private javax.swing.JPasswordField editAdminPass;
-    private javax.swing.JButton editCurrAdminBtn;
+    private javax.swing.JTable CustomerTablev;
+    private javax.swing.JButton ResetAddNewCustomerInputsBtn;
+    private javax.swing.JButton addNewCustomerBtn;
+    private javax.swing.JTextField customerName;
+    private javax.swing.JTextField customerPhone;
+    private javax.swing.JButton deleteCurrCustomerBtn;
+    private javax.swing.JButton editCurrCustomerBtn;
+    private javax.swing.JTextField editCustomerName;
+    private javax.swing.JTextField editcustomerPhone;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -460,6 +450,6 @@ public class DB2 extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton refreshAdminsTable;
+    private javax.swing.JButton refreshCustomersTable;
     // End of variables declaration//GEN-END:variables
 }
