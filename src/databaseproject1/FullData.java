@@ -78,6 +78,10 @@ public class FullData extends javax.swing.JFrame {
         refreshFullDataTable = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         FullDataTablev = new javax.swing.JTable();
+        customersBtn = new javax.swing.JButton();
+        carsBtn = new javax.swing.JButton();
+        servicesBtn = new javax.swing.JButton();
+        adminBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -129,26 +133,63 @@ public class FullData extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(FullDataTablev);
 
+        customersBtn.setText("Customers");
+        customersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                customersBtnActionPerformed(evt);
+            }
+        });
+
+        carsBtn.setText("Cars");
+        carsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                carsBtnActionPerformed(evt);
+            }
+        });
+
+        servicesBtn.setText("Services");
+        servicesBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                servicesBtnActionPerformed(evt);
+            }
+        });
+
+        adminBtn.setText("Admins");
+        adminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(refreshFullDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 784, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGap(11, 11, 11)
+                .addComponent(adminBtn)
+                .addGap(18, 18, 18)
+                .addComponent(customersBtn)
+                .addGap(18, 18, 18)
+                .addComponent(carsBtn)
+                .addGap(18, 18, 18)
+                .addComponent(servicesBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(refreshFullDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(refreshFullDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 266, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customersBtn)
+                    .addComponent(carsBtn)
+                    .addComponent(servicesBtn)
+                    .addComponent(adminBtn)
+                    .addComponent(refreshFullDataTable, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -160,7 +201,9 @@ public class FullData extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,6 +260,34 @@ public class FullData extends javax.swing.JFrame {
         //        editCarID.setText(editCarId);
     }//GEN-LAST:event_FullDataTablevMouseClicked
 
+    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
+        // TODO add your handling code here:
+        DB2 adminsC = new DB2();
+        adminsC.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_adminBtnActionPerformed
+
+    private void customersBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customersBtnActionPerformed
+        // TODO add your handling code here:
+        Customers cust = new Customers();
+        cust.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_customersBtnActionPerformed
+
+    private void carsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_carsBtnActionPerformed
+        // TODO add your handling code here:
+        Cars carsC = new Cars();
+        carsC.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_carsBtnActionPerformed
+
+    private void servicesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_servicesBtnActionPerformed
+        // TODO add your handling code here:
+        Services servsC = new Services();
+        servsC.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_servicesBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -254,8 +325,12 @@ public class FullData extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable FullDataTablev;
+    private javax.swing.JButton adminBtn;
+    private javax.swing.JButton carsBtn;
+    private javax.swing.JButton customersBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton refreshFullDataTable;
+    private javax.swing.JButton servicesBtn;
     // End of variables declaration//GEN-END:variables
 }

@@ -51,5 +51,7 @@ public class DatabaseProject1 {
         // TODO code application logic here
         DatabaseProject1 pro = new DatabaseProject1();
         pro.createConnection();
+        AdminLogin al = new AdminLogin();
+        al.setVisible(true);
     }
 }
